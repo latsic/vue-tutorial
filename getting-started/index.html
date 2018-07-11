@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VueJS Getting started</title>
+  <script src="./vue.js"></script>
+  
+</head>
+<body>
+  
+  <div id="app">
+    <button v-on:click="(event) => increase(event, 2)">
+      Click me
+    </button>
+    <p>{{ counter }}</p>
+    <p
+      v-on:mousemove="(event) => updateCoordinates(event)"
+      v-on:click="updateCoordinates($event)"
+      >
+      Coordinates: {{ x }} {{ y }} - 
+      <span
+        v-on:mousemove.stop=""
+        >
+        DEAT SPOT
+      </span>
+    </p>
+    <input type="text" v-on:keyup.enter="alertMe">
+
+
+    <hr />
+
+    <input type="text" v-model="name">
+    <p>{{ name }}</p>
+
+    <button v-on:click="counterA++">IncreaseA</button>
+    <button v-on:click="counterA--">DecreaseA</button>
+    <button v-on:click="counterB--">IncrementB</button>
+    <p>{{ counterA }} | {{ counterB }}</p>
+    <p>result: {{ result() }} | {{ output }}</p>
+
+  </div>
+
+  <!-- <div id="app">
+    <h1 v-once>{{ title }}</h1>
+    <input type="text" v-on:input="changeTitle">
+    <p>{{ title }}</p>
+    <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+    <hr>
+    <p v-html="finishedLink"></p>
+  </div> -->
+  <script src="./app.js"></script>
+</body>
+</html>

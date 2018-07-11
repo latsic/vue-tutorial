@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<div id="exercise">
+  <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+  <div>
+    <button @click="startEffect">Start Effect</button>
+    <div id="effect" :class="effectClasses"></div>
+  </div>
+  <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+  <div :class="['red', 'thick', 'shadow']">I got no class :(</div>
+  <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+  <hr>
+  <hr>
+  <div>
+    <input type="text" v-model="divClassName">
+    <div :class="divClassName" :style="{width: '100px', height: '100px', border: '1px solid red'}"></div>
+  </div>
+  <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+  <div>
+    <input type="text" v-model="divClassName4">
+    <input type="text" v-model="useClass">
+    <div
+      :class="[divClassName4, useClass == 'true' ? 'shadow' : '']"
+      :style="{backgroundColor: 'green', width: '100px', height: '100px'}"
+      >
+    </div>
+  </div>
+  <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+  <div>
+    <input type="text" v-model="styleName5">
+    <div
+      :style="{backgroundColor: styleName5, width: '80px', height: '50px'}"
+      >
+    </div>
+  </div>
+  <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+  <div>
+    <button v-on:click="startProgress">Start Progress</button>
+    <div :class="'progress-bar'">
+      <div
+        :class="'progress-bar-inner'"
+        :style="{width: widthPx}">
+      </div>
+    </div>
+    
+    
+    <!-- <div
+      :style="{height: '50px', backgroundColor: 'gray', width: widthPx}"
+      >
+    </div> -->
+  </div>
+</div>
+
+</body>
+<script src="./app.js"></script>
+</html>

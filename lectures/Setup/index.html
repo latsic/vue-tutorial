@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <style>
+        
+        .myContainer {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            margin-top: 100px;
+            border: 1px solid black;
+        }
+
+        .myLine {
+            width: 80%;
+            height: 40px;
+            background-color: #ccc;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .myLine-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 80%;
+            margin: 4px 0;
+            border: 1px solid blue;
+            background-color: #888;
+        }
+        .myTextContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80%;
+            height: 80%;
+            margin: 4px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+        }
+        .myText {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!-- <div class="myContainer">
+
+    <div class="myLine">
+
+        <div class="myLine-inner">
+
+        </div>
+
+        <div class="myTextContainer">
+            <p class="myText">Some Sample Text................................</p>
+        </div>
+
+    </div>
+
+</div> -->
+
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">YOU</h1>
+            <div class="healthbar">
+                <div
+                    class="healthbar text-center"
+                    :style="{backgroundColor: 'green', margin: '0', color: 'white', width: healths.player + '%'}">
+
+                </div>
+                <p style="text-align: center">{{ healths.player }}</p>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">MONSTER</h1>
+            <div class="healthbar">
+                <div
+                    class="healthbar text-center"
+                    :style="{backgroundColor: 'green', margin: '0', color: 'white', width: healths.monster + '%'}">
+
+                </div>
+            </div>
+            <p style="text-align: center">
+                {{ healths.monster }}
+            </p>
+        </div>
+    </section>
+    <section class="row controls">
+        <div class="small-12 columns">
+            <button
+                id="start-game"
+                v-if="!isRunning"
+                @click="startNewGame()"
+                >
+                START NEW GAME
+            </button>
+        </div>
+    </section>
+    <section class="row controls">
+        <div
+            v-if="isRunning"
+            class="small-12 columns"
+            >
+            <button id="attack"
+                @click="playRound('attack')"
+                >
+                ATTACK
+            </button>
+            <button
+                id="special-attack"
+                @click="playRound('specialAttack')"
+                >
+                SPECIAL ATTACK
+            </button>
+            <button
+                id="heal"
+                @click="playRound('heal')"
+                >
+                HEAL
+            </button>
+            <button
+                id="give-up"
+                @click="isRunning = false"
+                >
+                GIVE UP
+            </button>
+        </div>
+    </section>
+    <section class="row log">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for="round in rounds">
+                    
+                    <div
+                        class="round-container"
+                        >
+                        <div
+                            class="round-outer"
+                            :class="{'round-container-player': round.actor==='player', 'round-container-monster': round.actor!=='player'}"
+                            >
+                            <div
+                                class="round-inner"
+                                :style="{width: round.damage + '%', backgroundColor: getColorByMove(round.move)}"
+                            >
+                            </div>
+                            <div class="round-text-container">
+                                <p class="round-text">
+                                    {{ getRoundText(round) }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li
+                    v-if="result"
+                    >
+                    {{ result }}
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+</body>
+<script src="./app.js"></script>
+</html>
