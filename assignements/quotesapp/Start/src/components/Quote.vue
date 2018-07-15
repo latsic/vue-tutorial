@@ -28,6 +28,7 @@ export default {
     border: 1.8px solid #888;
     text-align: center;
     word-wrap: break-word;
+    padding: 1rem;
   }
   div:hover {
     border: 1.8px solid #911;

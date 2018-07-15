@@ -48,6 +48,14 @@
                 </app-info-box>
             </div>
         </div>
+        <hr>
+        <hr>
+        <app-quote-grid
+            :quotes="quotes"
+            :deleteQuote="deleteQuote"
+            >
+        </app-quote-grid>
+
     </div>
 </template>
 
@@ -57,6 +65,8 @@
     import Quote from './components/Quote.vue';
     import Alert from './components/Alert.vue';
     import InfoBox from './components/InfoBox.vue';
+    import QuoteGrid from './components/QuoteGrid.vue';
+
     export default {
         data: () => ({
             quotes: [],
@@ -67,7 +77,8 @@
             appQuoteInput: QuoteInput,
             appQuote: Quote,
             appAlert: Alert,
-            appInfoBox: InfoBox
+            appInfoBox: InfoBox,
+            appQuoteGrid: QuoteGrid
         },
         methods: {
             addQuote(quote) {
